@@ -97,21 +97,21 @@ public class MyLinkedList_651463 {
     public void q1_rotate_clockwise(int k) {
         if (k >= size() || k < 1)
             return;
-        Node p = new Node(0);
-        p.next = head;
+        Node cur = head;
+        Node tail = head;
         int i = 0;
-        while (i < k){
-            p = p.next;
+
+        while (i < k-1){
+            cur = cur.next;
             i++;
         }
-        Node x = p.next;
-        p.next = null;
-        p = x;
-        while (p.next != null){
-            p = p.next;
+        tail = cur;
+        while(tail.next != null){
+            tail = tail.next;
         }
-        p.next = head;
-        head = x;
+        tail.next = head;
+        head = cur.next;
+        cur.next = null;
     }
 
     public void q2_reverse() {
@@ -126,18 +126,16 @@ public class MyLinkedList_651463 {
     }
 
     public void q3_remove_dup(){
-        if (head == null || head.next == null) return;
-        HashSet<Integer> sets = new HashSet<Integer>();
-        Node p = new Node(0);
-        p.next = head;
-        while (p.next != null){
-            if (!sets.contains(p.next.data)){
-                sets.add(p.next.data);
-                p = p.next;
-                continue;
+        Node prev = head;
+        Node cur = head.next;
+        while (cur != null) {
+            if (prev.data != cur.data){
+                prev.next = cur;
+                prev = cur;
             }
-            p.next = p.next.next;
+            cur = cur.next;
         }
+        prev.next = null;
     }
 
     public void q4_increment_digits() {

@@ -22,12 +22,14 @@ public class MyShuntingYard_651463 {
                 queue.enqueue(t);
             else if (t.equals("(")) {
                 stack.push(t);
-            } else if (t.equals(")")) {
+            }
+            else if (t.equals(")")) {
                 while (!stack.peek().equals("(")) {
                     queue.enqueue(stack.pop());
                 }
                 stack.pop(); // discard "("
-            } else {
+            }
+            else {
                 if (!stack.isEmpty()) { // double lovely bug
                     if (order(stack.peek()) >= order(t))
                         queue.enqueue(stack.pop());
