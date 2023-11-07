@@ -4,11 +4,11 @@ public class Sort {
     public static void main(String[] arg) {
         int[] array = new int[] { 2, 5, 4, 1, 3, 8, 6, 7 };
 
-        // bubbleSort(array);
-        // selectionSort(array);
-        // insertionSort(array);
+        bubbleSort(array);
+        selectionSort(array);
+        insertionSort(array);
 
-        // quickSort(array, 0, array.length - 1);
+        quickSort(array, 0, array.length - 1);
         mergeSort(array);
 
         for (int i : array) {
@@ -67,7 +67,7 @@ public class Sort {
         int pivot = arr[end];
         int i = start - 1;
 
-        for (int j = start; j <= end - 1; j++){
+        for (int j = start; j < end; j++){
             if (arr[j] < pivot) {
                 i++;
                 swap(arr, i, j);
@@ -106,12 +106,10 @@ public class Sort {
 
         int i = 0, l = 0, r = 0;
         while (l < leftSize && r < rightSize) {
-            if (left[l] <= right[r]) {
+            if (left[l] <= right[r])
                 arr[i++] = left[l++];
-            }
-            else {
+            else 
                 arr[i++] = right[r++];
-            }
         }
 
         while (l < leftSize) {
